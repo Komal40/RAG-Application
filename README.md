@@ -54,7 +54,7 @@ Create a `.env` file in the root directory:
                                       ▼
                             [ Gemini LLM Engine ] ──► [ Final Response ]
 
-
+```
 
 #### Spin up the entire application stack (FastAPI Backend + Postgres Pgvector DB) using Docker Compose
 docker-compose up -d
