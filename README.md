@@ -37,21 +37,22 @@ Create a `.env` file in the root directory:
 
 ## System Architecture Diagram
 
-[ PDF / Document ]
-       │
-       ▼
-[ Chunking Engine ] ──► [ Embedding Model (all-MiniLM-L6-v2) ]
-                                    │
-                                    ▼
-                         [ PostgreSQL + pgvector ]
-                                    ▲
-                                    │ (Similarity Search)
-[ User Query ] ──────────► [ Vector Search ]
-                                    │
-                         (Top Context Chunks + Query)
-                                    │
-                                    ▼
-                          [ Gemini LLM Engine ] ──► [ Final Response ]
+```text
+  [ PDF Document ]
+         │
+         ▼
+  [ Chunking Engine ] ──► [ Embedding Model (all-MiniLM-L6-v2) ]
+                                      │
+                                      ▼
+                           [ PostgreSQL + pgvector ]
+                                      ▲
+                                      │ (Similarity Search)
+  [ User Query ] ──────────► [ Vector Search ]
+                                      │
+                           (Top Context Chunks + Query)
+                                      │
+                                      ▼
+                            [ Gemini LLM Engine ] ──► [ Final Response ]
 
 
 
