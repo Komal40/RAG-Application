@@ -22,3 +22,45 @@ A production-ready Retrieval-Augmented Generation (RAG) backend API built with F
 - **Language & Runtime:** Python 3.10+ / Uvicorn
 
 ---
+
+## Prerequisites
+* **Docker & Docker Compose** installed locally or on host server.
+* **Google Gemini API Key** (obtainable via Google AI Studio).
+* PostgreSQL database instance with `pgvector` support (Local Docker container, Neon DB, Supabase, or AWS RDS PostgreSQL).
+
+---
+
+## Environment Setup
+Create a `.env` file in the root directory:
+
+---
+
+## System Architecture Diagram
+
+[ PDF / Document ]
+       │
+       ▼
+[ Chunking Engine ] ──► [ Embedding Model (all-MiniLM-L6-v2) ]
+                                    │
+                                    ▼
+                         [ PostgreSQL + pgvector ]
+                                    ▲
+                                    │ (Similarity Search)
+[ User Query ] ──────────► [ Vector Search ]
+                                    │
+                         (Top Context Chunks + Query)
+                                    │
+                                    ▼
+                          [ Gemini LLM Engine ] ──► [ Final Response ]
+
+
+
+#### Spin up the entire application stack (FastAPI Backend + Postgres Pgvector DB) using Docker Compose
+docker-compose up -d
+
+#### Once running, 
+uvicorn app.main:app --reload 
+
+#### Access interactive API documentation at:
+Swagger UI: http://localhost:8000/docs
+ReDoc: http://localhost:8000/redoc
